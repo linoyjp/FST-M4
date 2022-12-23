@@ -1,0 +1,18 @@
+drop table starwars;
+
+-- Create a table to store input data
+CREATE TABLE starwars
+ (name STRING, line STRING)
+ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+ TBLPROPERTIES ("skip.header.line.count"="2");	
+
+-- Load data into the database using a file on your local system (NOT HDFS)
+LOAD DATA LOCAL INPATH 'root/inputs/episodeIV_dialouges.txt' INTO TABLE starwars;
+LOAD DATA LOCAL INPATH 'root/inputs/episodeV_dialouges.txt' INTO TABLE starwars;
+LOAD DATA LOCAL INPATH 'root/inputs/episodeVI_dialouges.txt' INTO TABLE starwars;
+
+insert overwrite directory '/user/linoy/HiveProjectOutput'
+select name,COUNT(name) as no_of_lines
+from starwars 
+group by name 
+order by no_of_lines desc;

@@ -1,0 +1,11 @@
+drop table episode4;
+-- input table
+CREATE TABLE episode4 (name STRING, line STRING)
+ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+ TBLPROPERTIES ("skip.header.line.count"="2");	
+ 
+-- Load data into the database using a file on your local system (NOT HDFS)
+LOAD DATA LOCAL INPATH 'root/inputs/episodeIV_dialouges.txt' INTO TABLE episode4;
+ 
+ insert overwrite directory '/user/linoy/HiveProjectOutput'
+ select count(*) from episode4 where instr(line,'Luke') >=1;
