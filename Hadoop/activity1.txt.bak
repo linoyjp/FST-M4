@@ -8,7 +8,7 @@ $ vim csvFile.csv
 $ hdfs dfs -mkdir /user/linoy/textData
 
 # Copy the CSV file, csvFile.csv, into the textData folder in the HDFS
-$ hdfs dfs -put ./csvFile.csv /user/linoy/textData
+$ hdfs dfs -put ./txtFile.txt /user/linoy/textData
 
 # Copy the TXT file, txtFile.txt, into the textData folder in the HDFS
 $ hdfs dfs -put ./txtFile.txt /user/linoy/textData
