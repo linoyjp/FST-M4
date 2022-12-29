@@ -7,6 +7,6 @@ LOAD DATA LOCAL INPATH '/input.txt' INTO TABLE files;
 -- Create a new table using data from the files table
 CREATE TABLE word_counts AS
       SELECT word, count(1) AS count FROM
-      (SELECT explode(split(line, ' ')) AS word FROM files) w
+      SELECT explode(split(line, ' ')) AS word FROM files) w
       GROUP BY word
       ORDER BY word;
